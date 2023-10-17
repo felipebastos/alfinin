@@ -17,37 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from django.shortcuts import HttpResponse, render
-from django.views import View
-
-
-def alo(request):
-    """Esta função faz o básico."""
-    return HttpResponse("Alô mamãe!")
-
-
-class PrestaNao(View):
-    frase = "Presta não"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, "zezo/page.html")
-
-    def post(self, request, *args, **kwargs):
-        return HttpResponse(f"Claro que {self.frase}")
-
-
-def soma(request, a: int, b: int) -> HttpResponse:
-    return HttpResponse(f"{a}+{b}={float(a)+float(b)}")
-
-
-def espia(request):
-    return HttpResponse(f"oi {request.GET.get('pinscher')}")
+from exemplo import views
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("alo/", alo),
-    path("presta/", PrestaNao.as_view()),
-    path("soma/<path:a>/mais/<b>/", soma),
-    path("espia/", espia),
+    path("alo/", views.alo),
+    path("presta/", views.PrestaNao.as_view()),
+    path("soma/<path:a>/mais/<b>/", views.soma),
+    path("espia/", views.espia),
 ]

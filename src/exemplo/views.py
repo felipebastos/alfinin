@@ -4,6 +4,19 @@ from django.http import JsonResponse
 
 from http import HTTPStatus
 
+from json import loads
+
+class Aluno:
+    nome = "Manel Carlos"
+    presta = "não"
+
+    def __str__(self):
+        return "Presta não"
+
+    def __dict__(self):
+        return loads('{"nome": "Jota", "presta": "não"}')
+
+
 
 # Create your views here.
 def alo(request):
@@ -12,11 +25,23 @@ def alo(request):
         "nome": "Tiquinho",
         "raça": "Pinscher",
         "idade": 17,
+        "duvida": [
+            {
+                "pergunta": "Funciona?",
+                "resposta": "sim."
+            },
+            {
+                "pergunta": "Presta?",
+                "resposta": "Presta não"
+            }
+        ]
     }
 
     dicionario["idade"] = 5
 
-    return JsonResponse(dicionario, status=HTTPStatus.METHOD_NOT_ALLOWED)
+    n = Aluno()
+
+    return JsonResponse(dict(n), status=HTTPStatus.METHOD_NOT_ALLOWED)
 
 
 class PrestaNao(View):

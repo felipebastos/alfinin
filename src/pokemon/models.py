@@ -14,10 +14,14 @@ class Pokemon(models.Model):
     numero = models.IntegerField()
     nome = models.CharField(max_length=200)
     tipo = models.CharField(max_length=4, choices=POKE_TIPOS, default="norm")
+    capturado = models.BooleanField(default=False)
 
     ambientes = models.ManyToManyField(
         "Ambiente", through="PokeAmb", related_name="pokemons"
     )
+
+    def __str__(self) -> str:
+        return f"Pokemon: {self.nome}"
 
 
 class Ambiente(models.Model):

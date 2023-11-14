@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -14,6 +15,7 @@ class Pokemon(models.Model):
     numero = models.IntegerField()
     nome = models.CharField(max_length=200)
     tipo = models.CharField(max_length=4, choices=POKE_TIPOS, default="norm")
+
     capturado = models.BooleanField(default=False)
 
     ambientes = models.ManyToManyField(

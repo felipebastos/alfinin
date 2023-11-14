@@ -29,6 +29,9 @@ class Pokemon(models.Model):
 class Ambiente(models.Model):
     nome = models.CharField(max_length=20)
 
+    def __str__(self) -> str:
+        return f"Ambiente: {self.nome}"
+
 
 class PokeAmb(models.Model):
     pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE)

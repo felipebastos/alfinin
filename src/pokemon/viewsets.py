@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from pokemon.models import Pokemon, Ambiente
-from pokemon.serializers import PokemonSerializer, AmbienteSerializer
+from pokemon.models import Pokemon, Ambiente, PokeAmb
+from pokemon.serializers import PokemonSerializer, AmbienteSerializer, PokeAmbSerializer
 
 
 class PokemonView(viewsets.ModelViewSet):
@@ -22,3 +22,8 @@ class PokemonView(viewsets.ModelViewSet):
 class AmbienteView(viewsets.ModelViewSet):
     queryset = Ambiente.objects.all()
     serializer_class = AmbienteSerializer
+
+
+class PokeAmbView(viewsets.ModelViewSet):
+    queryset = PokeAmb.objects.all()
+    serializer_class = PokeAmbSerializer
